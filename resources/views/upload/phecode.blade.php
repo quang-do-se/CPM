@@ -17,7 +17,7 @@
                             </div>
                         </form>
 
-                        <div id="message" class="clearfix">
+                        <div id="message" class="clearfix" style="margin-top: 10px">
                             @include('flash::message')
                         </div>
                     </div>

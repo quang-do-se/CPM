@@ -57,7 +57,7 @@ class ICD9RepositorySQL implements ICD9Repository
             $query->where('code', $code);
         }
 
-        $records = $query->get();
+        $records = $query->offset($offset)->limit($limit)->get();
 
         $collection = new ICD9Collection();
 

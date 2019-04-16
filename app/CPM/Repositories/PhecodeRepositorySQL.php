@@ -40,7 +40,7 @@ class PhecodeRepositorySQL implements PhecodeRepository
             $query->where('code', $code);
         }
 
-        $records = $query->get();
+        $records = $query->offset($offset)->limit($limit)->get();
 
         $collection = new PhecodeCollection();
 

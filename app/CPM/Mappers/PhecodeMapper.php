@@ -18,7 +18,7 @@ class PhecodeMapper
 
         if (count($parsedArray) !== 2) {
             throw new \InvalidArgumentException(
-                "Input should have a code and a description, exactly. Input: ''"
+                "Input should have a code and a description, exactly. Input: '$input'"
             );
         }
 

@@ -18,7 +18,7 @@ class ICD9PhecodeMapper
 
         if (count($parsedArray) !== 2) {
             throw new \InvalidArgumentException(
-                "Input should have a ICD-9 code and a Phecode, exactly. Input: ''"
+                "Input should have a ICD-9 code and a Phecode, exactly. Input: '$input'"
             );
         }
 

@@ -20,10 +20,11 @@ interface PhecodeRepository
         int $limit = self::LIMIT
     ): PhecodeCollection;
 
-    public function get(string $code,
-                        bool $typeahead = false,
-                        int $offset = 0,
-                        int $limit = self::LIMIT
+    public function get(
+        string $code,
+        bool $typeahead = false,
+        int $offset = 0,
+        int $limit = self::LIMIT
     ): PhecodeCollection;
 
     public function add(Phecode $phecode): bool;

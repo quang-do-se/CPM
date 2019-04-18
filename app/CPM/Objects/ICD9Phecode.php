@@ -25,9 +25,9 @@ class ICD9Phecode implements Jsonable, Arrayable
         string $icd9Description = '',
         string $phecodeDescription = ''
     ) {
-        $this->phecode = $phecode;
+        $this->icd9 = strtoupper($icd9);
+        $this->phecode = strtoupper($phecode);
         $this->phecodeDescription = $phecodeDescription;
-        $this->icd9 = $icd9;
         $this->icd9Description = $icd9Description;
     }
 

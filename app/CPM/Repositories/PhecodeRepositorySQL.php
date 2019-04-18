@@ -22,14 +22,12 @@ class PhecodeRepositorySQL implements PhecodeRepository
             ->table('phecode');
     }
 
-    public function get
-    (
+    public function get(
         string $code,
         bool $typeahead = false,
         int $offset = 0,
         int $limit = self::LIMIT
-    ): PhecodeCollection
-    {
+    ): PhecodeCollection {
         $query = $this->getTable();
 
         $code = strtoupper($code);
@@ -56,8 +54,7 @@ class PhecodeRepositorySQL implements PhecodeRepository
     public function getAll(
         int $offset = 0,
         int $limit = self::LIMIT
-    ): PhecodeCollection
-    {
+    ): PhecodeCollection {
         $records = $this->getTable()->offset($offset)->limit($limit)->get();
 
         $collection = new PhecodeCollection();

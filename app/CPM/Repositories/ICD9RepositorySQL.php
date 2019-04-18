@@ -25,8 +25,7 @@ class ICD9RepositorySQL implements ICD9Repository
     public function getAll(
         int $offset = 0,
         int $limit = self::LIMIT
-    ): ICD9Collection
-    {
+    ): ICD9Collection {
         $records = $this->getTable()->offset($offset)->limit($limit)->get();
 
         $collection = new ICD9Collection();
@@ -45,8 +44,7 @@ class ICD9RepositorySQL implements ICD9Repository
         bool $typeahead = false,
         int $offset = 0,
         int $limit = self::LIMIT
-    ): ICD9Collection
-    {
+    ): ICD9Collection {
         $query = $this->getTable();
 
         $code = strtoupper($code);

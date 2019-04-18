@@ -10,12 +10,10 @@ namespace App\Http\Controllers;
 
 use App\CPM\Objects\UploadedFile;
 use App\CPM\Services\ICD9PhecodeUploadService;
-use App\CPM\Services\ICD9UploadService;
 use App\CPM\Services\PhecodeUploadService;
 use App\Jobs\ProcessUploadedFile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Laracasts\Flash\Flash;
 
 class UploadController extends Controller
 {
@@ -37,6 +35,7 @@ class UploadController extends Controller
     public function uploadICD9(Request $request)
     {
         $fileName = 'icd9_' . Carbon::now()->format('YmdHis') . '_' . session()->getId();
+        $hasHeader = $request->input('has-header') !== null;
 
         $path = $request
             ->file('upload')
@@ -45,11 +44,13 @@ class UploadController extends Controller
         $uploadedFile = new UploadedFile();
         $uploadedFile->setPath($path);
         $uploadedFile->setType(UploadedFile::ICD9);
-        $uploadedFile->setHeader(true);
+        $uploadedFile->setHeader($hasHeader);
 
         ProcessUploadedFile::dispatch($uploadedFile);
 
-        Flash::success('Upload ICD9 successfully. It may take up to 15 minutes to upload new data.');
+        flash('Upload ICD9 successfully. It may take up to 15 minutes to upload new data.')
+            ->important()
+            ->success();
 
         return view('upload.icd9');
     }
@@ -62,6 +63,7 @@ class UploadController extends Controller
     public function uploadICD9Phecode(Request $request, ICD9PhecodeUploadService $service)
     {
         $fileName = 'icd9Phecode_' . Carbon::now()->format('YmdHis') . '_' . session()->getId();
+        $hasHeader = $request->input('has-header') !== null;
 
         $path = $request
             ->file('upload')
@@ -70,11 +72,13 @@ class UploadController extends Controller
         $uploadedFile = new UploadedFile();
         $uploadedFile->setPath($path);
         $uploadedFile->setType(UploadedFile::ICD9_PHECODE);
-        $uploadedFile->setHeader(true);
+        $uploadedFile->setHeader($hasHeader);
 
         ProcessUploadedFile::dispatch($uploadedFile);
 
-        Flash::success('Upload ICD9 Phecode Map successfully. It may take up to 15 minutes to upload new data.');
+        flash('Upload ICD9 Phecode Map successfully. It may take up to 15 minutes to upload new data.')
+            ->important()
+            ->success();
 
         return view('upload.icd9Phecode');
     }
@@ -87,6 +91,7 @@ class UploadController extends Controller
     public function uploadPhecode(Request $request, PhecodeUploadService $service)
     {
         $fileName = 'phecode_' . Carbon::now()->format('YmdHis') . '_' . session()->getId();
+        $hasHeader = $request->input('has-header') !== null;
 
         $path = $request
             ->file('upload')
@@ -95,11 +100,13 @@ class UploadController extends Controller
         $uploadedFile = new UploadedFile();
         $uploadedFile->setPath($path);
         $uploadedFile->setType(UploadedFile::PHECODE);
-        $uploadedFile->setHeader(true);
+        $uploadedFile->setHeader($hasHeader);
 
         ProcessUploadedFile::dispatch($uploadedFile);
 
-        Flash::success('Upload Phecode successfully. It may take up to 15 minutes to upload new data.');
+        flash('Upload Phecode successfully. It may take up to 15 minutes to upload new data.')
+            ->important()
+            ->success();
 
         return view('upload.phecode');
     }

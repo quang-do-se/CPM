@@ -44,13 +44,21 @@ class ICD9UploadService
 
                 if ($result) {
                     $countUpload++;
+                } else {
+                    $this->reportError("Line $index: Failed to add line '$line'");
                 }
             } catch (\InvalidArgumentException $e) {
-                $this->errorLog->addMessage($e->getMessage());
+                $this->reportError("Line $index: " . $e->getMessage());
             }
         }
 
         return $countUpload;
+    }
+
+    private function reportError(string $message): void
+    {
+        $this->errorLog->addMessage($message);
+        Log::error($message);
     }
 
     public function getErrorLog(): ErrorLog

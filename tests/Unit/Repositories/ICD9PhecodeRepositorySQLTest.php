@@ -132,9 +132,9 @@ class ICD9PhecodeRepositorySQLTest extends TestCase
 
     public function testAddingICD9Phecode()
     {
-        $phecode = 'A320';
+        $phecode = 'ab320c';
         $phecodeDescription = 'Phecode Disease';
-        $icd9 = 'I123';
+        $icd9 = 'xy123z';
         $icd9Description = 'ICD9 Description';
 
         $icd9Phecode = new ICD9Phecode(
@@ -149,6 +149,13 @@ class ICD9PhecodeRepositorySQLTest extends TestCase
         $searchedRecords = $this->repository->getByICD9($icd9);
 
         $this->assertCount(1, $searchedRecords);
+
+        $record = $searchedRecords->first();
+
+        $this->assertEquals(strtoupper($icd9), $record->getICD9());
+        $this->assertEquals($icd9Description, $record->getICD9Description());
+        $this->assertEquals(strtoupper($phecode), $record->getPhecode());
+        $this->assertEquals($phecodeDescription, $record->getPhecodeDescription());
     }
 
     public function testAddingDuplicateICD9Phecode()

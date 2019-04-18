@@ -18,7 +18,7 @@ class ICD9Mapper
 
         if (count($parsedArray) !== 2) {
             throw new \InvalidArgumentException(
-                'Input should have a code and a description, exactly.'
+                "Input should have a code and a description, exactly. Input: ''"
             );
         }
 

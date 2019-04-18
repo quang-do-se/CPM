@@ -26,7 +26,6 @@ Route::post('/uploadPhecode', 'UploadController@uploadPhecode');
 Route::get('/uploadICD9Phecode', 'UploadController@uploadICD9PhecodeLanding');
 Route::post('/uploadICD9Phecode', 'UploadController@uploadICD9Phecode');
 
-
 Route::get('/api/searchICD9Phecode', 'SearchAPIController@getICD9Phecode');
 Route::get('/api/searchICD9', 'SearchAPIController@getICD9');
 Route::get('/api/searchPhecode', 'SearchAPIController@getPhecode');

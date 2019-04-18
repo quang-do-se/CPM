@@ -53,9 +53,6 @@
                     minimumInputLength: 1
                 }
             ).on('select2:select', function (e) {
-                console.log('Select event');
-                console.log(e.params.data);
-
                 EventBus.$emit('search-select2', e.params.data);
             });
         },

@@ -1789,23 +1789,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
     return {
-      cards: []
+      cards: [],
+      mode: 'Phecode',
+      url: './api/searchICD9Phecode?phecode='
     };
   },
   created: function created() {
     EventBus.$on('search-select2', this.fetchCodes);
   },
   methods: {
+    changeMode: function changeMode(mode) {
+      this.mode = mode;
+      EventBus.$emit('change-mode', mode);
+    },
     fetchCodes: function fetchCodes(data) {
       var _this = this;
 
-      console.log('Code Card Select');
-      console.log(data);
-      var page_url = './api/searchICD9Phecode?phecode=' + data.id;
+      var page_url = this.url + data.id;
       fetch(page_url).then(function (res) {
         return res.json();
       }).then(function (json) {
@@ -1813,6 +1821,11 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         return console.log(err);
       });
+    }
+  },
+  computed: {
+    title: function title() {
+      return 'Search ' + this.mode;
     }
   }
 });
@@ -42949,7 +42962,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("h2", [_vm._v(_vm._s(this.title))])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [_c("search-select2")], 1)
@@ -42994,16 +43009,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("h2", [_vm._v(" Search Phecode")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55547,8 +55553,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /vagrant/projects/vanderbilt/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /vagrant/projects/vanderbilt/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /vagrant/projects/cpm/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /vagrant/projects/cpm/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

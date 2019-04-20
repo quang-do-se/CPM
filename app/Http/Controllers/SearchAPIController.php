@@ -15,16 +15,6 @@ use Illuminate\Http\Request;
 
 class SearchAPIController extends APIBaseController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     const MAX_LIMIT = 10000;
     const MIN_LIMIT = 1000;
 

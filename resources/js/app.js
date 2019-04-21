@@ -36,9 +36,9 @@ Vue.component('search-select2', require('./components/SearchSelect2.vue').defaul
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.config.devtools = true;
-Vue.config.debug = true;
-Vue.config.silent = false;
+// Vue.config.devtools = true;
+// Vue.config.debug = true;
+// Vue.config.silent = false;
 
 const app = new Vue({
     el: '#app'

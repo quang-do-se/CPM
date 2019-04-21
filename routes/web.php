@@ -11,23 +11,30 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+$middlewareTesting = [];
+$middlewareProd = ['auth'];
+
+$middleware = config('app.env') === 'testing' ? $middlewareTesting : $middlewareProd;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware($middleware)->group(function () {
+    Route::get('/', 'HomeController@index');
 
-Route::get('/uploadICD9', 'UploadController@uploadICD9Landing');
-Route::post('/uploadICD9', 'UploadController@uploadICD9');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/uploadPhecode', 'UploadController@uploadPhecodeLanding');
-Route::post('/uploadPhecode', 'UploadController@uploadPhecode');
+    Route::get('/uploadICD9', 'UploadController@uploadICD9Landing');
+    Route::post('/uploadICD9', 'UploadController@uploadICD9');
 
-Route::get('/uploadICD9Phecode', 'UploadController@uploadICD9PhecodeLanding');
-Route::post('/uploadICD9Phecode', 'UploadController@uploadICD9Phecode');
+    Route::get('/uploadPhecode', 'UploadController@uploadPhecodeLanding');
+    Route::post('/uploadPhecode', 'UploadController@uploadPhecode');
 
-Route::get('/api/searchICD9Phecode', 'SearchAPIController@getICD9Phecode');
-Route::get('/api/searchICD9', 'SearchAPIController@getICD9');
-Route::get('/api/searchPhecode', 'SearchAPIController@getPhecode');
+    Route::get('/uploadICD9Phecode', 'UploadController@uploadICD9PhecodeLanding');
+    Route::post('/uploadICD9Phecode', 'UploadController@uploadICD9Phecode');
 
-Route::get('/search', 'SearchController@index');
+    Route::get('/api/searchICD9Phecode', 'SearchAPIController@getICD9Phecode');
+    Route::get('/api/searchICD9', 'SearchAPIController@getICD9');
+    Route::get('/api/searchPhecode', 'SearchAPIController@getPhecode');
+
+    Route::get('/search', 'SearchController@index');
+});

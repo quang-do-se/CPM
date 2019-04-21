@@ -1,5 +1,5 @@
 <template>
-    <select class="search-select2"></select>
+    <select class="search-select2 form-control"></select>
 </template>
 
 
